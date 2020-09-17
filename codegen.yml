@@ -1,0 +1,23 @@
+overwrite: true
+schema:
+  - ./graphql/schema.graphql
+documents:
+  - ./graphql/queries/*.graphql
+  - ./graphql/mutations/*.graphql
+generates:
+  ./src/server/gen/graph.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
+  ./src/client/gen/graph.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withComponent: false
+      withHooks: true
+      withHOC: false
+  ./graphql/schema.json:
+    plugins:
+      - introspection
